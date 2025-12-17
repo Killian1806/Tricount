@@ -1,0 +1,92 @@
+/* Mise en page globale */
+body {
+    background-color: #f4f7f6;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding-bottom: 100px; 
+}
+
+.container {
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+h1 { font-size: 28px; margin-bottom: 5px; color: #1a1a1a; }
+.subtitle { color: #888; margin-bottom: 30px; }
+
+/* Cartes des Groupes */
+.tricount-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.tricount-card {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+}
+
+.tricount-card:active { transform: scale(0.98); }
+
+.tricount-card h3 { margin: 0 0 10px 0; font-size: 20px; }
+
+.card-meta {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    color: #666;
+    font-size: 14px;
+}
+
+/* Bouton Flottant (+) */
+.fab {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 70px;
+    background-color: #888;
+    color: white;
+    border-radius: 50%;
+    border: none;
+    font-size: 40px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Modal Stylisée */
+.modal {
+    display: none; /* Caché par défaut */
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 20% auto;
+    padding: 25px;
+    border-radius: 20px;
+    width: 80%;
+    max-width: 400px;
+}
+
+.modal-content input, .modal-content select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+

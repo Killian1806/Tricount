@@ -1,35 +1,35 @@
 <?php
+$tricountModel = new Models\Tricount();
+$userId = 1; 
+$errors = [];
 
-$error = [];
+// Traitement du formulaire de création
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['title'])) {
+    $title = trim($_POST['title']);
+    $currency = $_POST['currency'] ?? 'EUR';
 
-if (!empty($_POST)) {
-	$user = new Models\User();
-
-	try {
-		$user->setUsername($_POST['username']);
-	} catch (\Exception $e) {
-		$error['username'] = $e->getMessage();
-	}
-	try {
-		$user->setEmail($_POST['email']);
-	} catch (\Exception $e) {
-		$error['email'] = $e->getMessage();
-	}
-	try {
-		$user->setPassword($_POST['password']);
-	} catch (\Exception $e) {
-		$error['password'] = $e->getMessage();
-	}
-
-	if (empty($error)) {
-		if ($user->register()) {
-			redirectTo('/');
-		} else {
-			$error['global'] = 'Echec de l\'enregistrement';
-		}
-	}
+    if (!empty($title)) {
+        if ($tricountModel->create($title, $currency, $userId)) {
+            redirectTo('/'); 
+            exit;
+        } else {
+            $errors['global'] = "Erreur lors de la création.";
+        }
+    }
 }
 
+if ($tricountModel->create($title, $currency, $userId)) {
+    redirectTo('/');
+    exit;
+} else {
+    die("L'insertion a échoué dans le modèle.");
+}
+
+// Récupération des groupes pour la vue
+$myTricounts = $tricountModel->getUserTricounts($userId);
+
 render('index', false, [
-	'error' => $error,
+    'tricounts' => $myTricounts,
+    'js' => 'script',
+    'css' => 'index'
 ]);

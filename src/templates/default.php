@@ -14,6 +14,10 @@
 <body>
 	<main>
 		<?= $content ?>
+
+		<?php if (!empty($js)): ?>
+			<script src="assets/js/<?= $js ?>.js"></script>
+		<?php endif; ?>
 	</main>
 </body>
 
