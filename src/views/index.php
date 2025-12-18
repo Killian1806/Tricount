@@ -1,18 +1,16 @@
 <?php ob_start() ?>
 
 <div class="container">
-    <header>
-        <h1>Mes Groupes</h1>
-        <p class="subtitle">Gérez vos dépenses partagées facilement</p>
-    </header>
-
+    <h1>TriCount</h1>
+    <h2>Mes Groupes</h2>
+    <p class="subtitle">Gérez vos dépenses partagées facilement</p>
     <div class="tricount-list">
         <?php if (empty($tricounts)): ?>
             <p style="text-align:center; color:#888;">Aucun groupe pour le moment. Cliquez sur +</p>
         <?php else: ?>
             <?php foreach ($tricounts as $t): ?>
     <div class="tricount-card-container" style="position: relative;">
-        <a href="/tricount/detail?id=<?= $t['id'] ?>" class="tricount-card">
+        <a href="groupe?id=<?= $t['id'] ?>" class="tricount-card">
             <h3><?= htmlspecialchars($t['title']) ?></h3>
             <div class="card-meta">
                 <span>👥 Partagé en <?= $t['money'] ?></span>
@@ -40,7 +38,6 @@
                 <select name="currency">
                     <option value="EUR">Euro (€)</option>
                     <option value="USD">Dollar ($)</option>
-                    <option value="CHF">Franc Suisse</option>
                 </select>
                 <button type="submit" class="btn-submit">Créer le groupe</button>
             </form>
@@ -50,7 +47,7 @@
 
 <?php
 render('default', true, [
-    'title' => 'Mes Groupes',
+    'title' => 'Accueil',
     'css' => 'home',
     'content' => ob_get_clean(),
     'js' => 'home',

@@ -1,0 +1,250 @@
+/* --- Variables --- */
+:root {
+    --primary-color: #717171; /* Gris du header */
+    --accent-color: #2196F3;  /* Bleu pour les actions */
+    --bg-light: #f5f7f9;
+    --text-dark: #333;
+    --text-gray: #757575;
+    --white: #ffffff;
+    --green: #4CAF50;
+    --red: #f44336;
+}
+
+body {
+    background-color: var(--bg-light);
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--text-dark);
+}
+
+/* --- Container Mobile --- */
+.app-container {
+    max-width: 500px;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-light);
+}
+
+/* --- Header --- */
+.group-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.group-header h1 {
+    flex: 1;
+    font-size: 1.1rem;
+    margin: 0 15px;
+    font-weight: 500;
+}
+
+.back-btn {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+.header-options {
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.profile-icon {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 64px;
+    height: 64px;
+}
+
+/* --- Barre d'invitation --- */
+.invite-bar {
+    background: var(--white);
+    padding: 12px 15px;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+}
+
+/* --- Système d'Onglets --- */
+.tabs {
+    display: flex;
+    background: var(--white);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.tab-link {
+    flex: 1;
+    padding: 12px 0;
+    border: none;
+    background: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-gray);
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s;
+}
+
+.tab-link.active {
+    color: var(--text-dark);
+    border-bottom: 3px solid var(--text-dark);
+}
+
+/* --- Contenu des onglets --- */
+.tab-content {
+    display: none;
+    padding: 15px;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* --- Liste des Dépenses --- */
+.expense-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.expense-icon {
+    width: 45px;
+    height: 45px;
+    background: #f0f2f5;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-right: 15px;
+}
+
+.expense-info {
+    flex: 1;
+}
+
+.expense-info strong {
+    display: block;
+    font-size: 0.95rem;
+    margin-bottom: 2px;
+}
+
+.expense-info span {
+    font-size: 0.8rem;
+    color: var(--text-gray);
+}
+
+.expense-amount {
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+/* --- Barre de Total --- */
+.total-bar {
+    background: var(--white);
+    margin-top: auto;
+    padding: 15px 20px;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* --- Onglet Equilibre --- */
+.balance-item {
+    background: var(--white);
+    padding: 15px;
+    margin-bottom: 8px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.balance-value.positive { color: var(--green); font-weight: bold; }
+.balance-value.negative { color: var(--red); font-weight: bold; }
+
+.btn-settle {
+    width: 100%;
+    padding: 12px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+/* --- Bouton Flottant (FAB) --- */
+.fab {
+    position: fixed;
+    bottom: 80px; /* Un peu au dessus de la barre de total */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 56px;
+    height: 56px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    border: none;
+    font-size: 28px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    cursor: pointer;
+    z-index: 100;
+}
+
+/* --- Modal (Style minimaliste) --- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background: white;
+    margin: 20% auto;
+    padding: 20px;
+    width: 85%;
+    max-width: 400px;
+    border-radius: 15px;
+}
+
+.modal-content input, .modal-content select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}

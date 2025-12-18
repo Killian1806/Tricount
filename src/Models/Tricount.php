@@ -52,4 +52,30 @@ class Tricount extends Database
         $query = $this->db->prepare("DELETE FROM tricounts WHERE id = :id");
         return $query->execute(['id' => $id]);
     }
+
+    public function getById($id)
+    {
+        $query = $this->db->prepare("SELECT * FROM tricounts WHERE id = :id");
+        $query->execute(['id' => $id]);
+        return $query->fetch(PDO::FETCH_ASSOC);
+    }
+
+public function getExpensesByGroup($groupId) {
+    // Jointure entre depenses et participants pour avoir le nom de celui qui a payé
+    $query = $this->db->prepare("
+        SELECT d.*, p.alias_name as payer_name 
+        FROM depenses d
+        JOIN participants p ON d.payer_id = p.id
+        WHERE d.tricount_id = :groupId
+        ORDER BY d.date DESC
+    ");
+    $query->execute(['groupId' => $groupId]);
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+}
+
+public function getParticipants($groupId) {
+    $query = $this->db->prepare("SELECT * FROM participants WHERE tricount_id = :groupId");
+    $query->execute(['groupId' => $groupId]);
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+}
 }
