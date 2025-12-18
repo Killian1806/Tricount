@@ -1,7 +1,7 @@
 /* --- Variables --- */
 :root {
-    --primary-color: #717171; /* Gris du header */
-    --accent-color: #2196F3;  /* Bleu pour les actions */
+    --primary-color: #717171; 
+    --accent-color: #2196F3;  
     --bg-light: #f5f7f9;
     --text-dark: #333;
     --text-gray: #757575;
@@ -48,4 +48,47 @@ header.header-main span {
     color: white;
     font-size: 2rem;
     margin: 0;
+}
+
+.profile-icon {
+    filter: invert(1);
+    margin-left: auto;
+    width: 64px;
+    height: 64px;
+}
+
+
+/* Style spécifique pour le header du profil */
+/* Style pour le Header spécifique au Profil */
+header.header-profile {
+    background-color: #717171 !important; /* Gris de l'image */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    height: 65px;
+    color: white;
+}
+
+header.header-profile h1 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+    color: white !important;
+    background: transparent !important; /* Sécurité contre les vieux styles */
+}
+
+header.header-profile .back-btn {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    width: 40px; /* Largeur pour équilibrer avec le spacer */
+    display: flex;
+    align-items: center;
+}
+
+header.header-profile .header-spacer {
+    width: 40px; /* Même largeur que le bouton back pour que le titre reste au milieu */
 }
