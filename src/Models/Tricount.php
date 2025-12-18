@@ -1,11 +1,14 @@
 <?php
+
 namespace Models;
 
 use PDO;
 
-class Tricount extends Database {
-    
-    public function create($title, $currency, $userId) {
+class Tricount extends Database
+{
+
+    public function create($title, $currency, $userId)
+    {
         try {
             $this->db->beginTransaction();
 
@@ -15,7 +18,7 @@ class Tricount extends Database {
                 'title' => htmlspecialchars($title),
                 'money' => htmlspecialchars($currency)
             ]);
-            
+
             $tricountId = $this->db->lastInsertId();
 
             // On ajoute l'utilisateur actuel comme participant 
@@ -25,14 +28,15 @@ class Tricount extends Database {
             $this->db->commit();
             return true;
         } catch (\Exception $e) {
-    $this->db->rollBack();
-    // Affiche l'erreur SQL précise
-    die("Erreur SQL : " . $e->getMessage()); 
-    return false;
+            $this->db->rollBack();
+            // Affiche l'erreur SQL précise
+            die("Erreur SQL : " . $e->getMessage());
+            return false;
         }
     }
 
-    public function getUserTricounts($userId) {
+    public function getUserTricounts($userId)
+    {
         $query = $this->db->prepare("
             SELECT t.* FROM tricounts t
             INNER JOIN participants p ON t.id = p.tricount_id
@@ -41,5 +45,11 @@ class Tricount extends Database {
         ");
         $query->execute(['userId' => $userId]);
         return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function delete($id)
+    {
+        $query = $this->db->prepare("DELETE FROM tricounts WHERE id = :id");
+        return $query->execute(['id' => $id]);
     }
 }

@@ -18,11 +18,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['title'])) {
     }
 }
 
-if ($tricountModel->create($title, $currency, $userId)) {
-    redirectTo('/');
-    exit;
-} else {
-    die("L'insertion a échoué dans le modèle.");
+if (isset($_GET['delete'])) {
+    $idToDelete = (int)$_GET['delete'];
+    if ($tricountModel->delete($idToDelete)) {
+        redirectTo('/');
+        exit;
+    }
 }
 
 // Récupération des groupes pour la vue
@@ -30,6 +31,6 @@ $myTricounts = $tricountModel->getUserTricounts($userId);
 
 render('index', false, [
     'tricounts' => $myTricounts,
-    'js' => 'script',
-    'css' => 'index'
+    'js' => 'home',
+    'css' => 'home'
 ]);

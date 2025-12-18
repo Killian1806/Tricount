@@ -1,92 +1,194 @@
-/* Mise en page globale */
+/* --- Reset & Base Mobile --- */
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent; 
+}
+
 body {
-    background-color: #f4f7f6;
-    font-family: 'Segoe UI', sans-serif;
+    background-color: #f8fafc;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     margin: 0;
-    padding-bottom: 100px; 
+    padding: 0;
+    color: #1e293b;
+    line-height: 1.5;
 }
 
 .container {
-    padding: 20px;
-    max-width: 500px;
+    width: 100%;
+    max-width: 600px; 
     margin: 0 auto;
+    padding: 16px;
+    padding-bottom: 100px; 
 }
 
-h1 { font-size: 28px; margin-bottom: 5px; color: #1a1a1a; }
-.subtitle { color: #888; margin-bottom: 30px; }
+/* --- Typographie --- */
+h1 {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 4px;
+    letter-spacing: -0.5px;
+}
 
-/* Cartes des Groupes */
+.subtitle {
+    font-size: 15px;
+    color: #64748b;
+    margin-bottom: 24px;
+}
+
+/* --- Liste et Cartes (Mobile First) --- */
 .tricount-list {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
+}
+
+.tricount-card-container {
+    position: relative;
+    width: 100%;
 }
 
 .tricount-card {
+    display: block;
     background: white;
     padding: 20px;
-    border-radius: 15px;
+    border-radius: 16px;
     text-decoration: none;
     color: inherit;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    transition: transform 0.2s;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    transition: transform 0.1s, background-color 0.1s;
 }
 
-.tricount-card:active { transform: scale(0.98); }
+/* Feedback tactile au toucher sur mobile */
+.tricount-card:active {
+    transform: scale(0.97);
+    background-color: #f1f5f9;
+}
 
-.tricount-card h3 { margin: 0 0 10px 0; font-size: 20px; }
+.tricount-card h3 {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    font-weight: 700;
+}
 
 .card-meta {
     display: flex;
-    justify-content: center;
-    gap: 20px;
-    color: #666;
-    font-size: 14px;
+    gap: 16px;
+    font-size: 13px;
+    color: #64748b;
 }
 
-/* Bouton Flottant (+) */
+/* --- Bouton Supprimer (Adapté mobile) --- */
+.btn-delete {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #fee2e2;
+    color: #ef4444;
+    border-radius: 50%;
+    width: 32px; 
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 20px;
+    z-index: 2;
+    border: 1px solid #fecaca;
+}
+
+.btn-delete:active {
+    background: #ef4444;
+    color: white;
+}
+
+/* --- Bouton Flottant (Le "+" en bas) --- */
 .fab {
     position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 70px;
-    height: 70px;
-    background-color: #888;
+    bottom: 30px;      
+    left: 50%;        
+    transform: translateX(-50%); 
+    
+    width: 66px;
+    height: 66px;
+    background-color: #10b981; 
     color: white;
     border-radius: 50%;
     border: none;
-    font-size: 40px;
+    
+    /* Flexbox pour centrer le symbole + à l'intérieur du bouton */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    font-size: 36px;
+    font-weight: 300; 
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+    z-index: 1000;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: transform 0.1s ease;
 }
 
-/* Modal Stylisée */
+.fab:active {
+    transform: translateX(-50%) scale(0.9); 
+    background-color: #059669;
+}
+
+/* --- Modal Mobile (Plein écran ou presque) --- */
 .modal {
-    display: none; /* Caché par défaut */
+    display: none;
     position: fixed;
     z-index: 1000;
     left: 0; top: 0;
     width: 100%; height: 100%;
     background-color: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+    padding: 20px;
+    display: flex;
+    align-items: flex-end;
 }
 
 .modal-content {
     background-color: white;
-    margin: 20% auto;
-    padding: 25px;
-    border-radius: 20px;
-    width: 80%;
-    max-width: 400px;
-}
-
-.modal-content input, .modal-content select {
     width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-sizing: border-box;
+    padding: 24px;
+    border-radius: 24px 24px 0 0; 
+    animation: slideUp 0.3s ease-out;
 }
 
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.modal-content input, 
+.modal-content select {
+    width: 100%;
+    height: 50px; 
+    padding: 0 16px;
+    margin-bottom: 16px;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    border-radius: 12px;
+    font-size: 16px; 
+}
+
+.btn-submit {
+    width: 100%;
+    height: 54px;
+    background-color: #10b981;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* Masquer la modal par défaut */
+#modal-add { display: none; }

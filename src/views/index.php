@@ -11,14 +11,22 @@
             <p style="text-align:center; color:#888;">Aucun groupe pour le moment. Cliquez sur +</p>
         <?php else: ?>
             <?php foreach ($tricounts as $t): ?>
-                <a href="/tricount/detail?id=<?= $t['id'] ?>" class="tricount-card">
-                    <h3><?= htmlspecialchars($t['title']) ?></h3>
-                    <div class="card-meta">
-                        <span>👥 Partagé en <?= $t['money'] ?></span>
-                        <span>📅 <?= date('d/m/Y', strtotime($t['creation'])) ?></span>
-                    </div>
-                </a>
-            <?php endforeach; ?>
+    <div class="tricount-card-container" style="position: relative;">
+        <a href="/tricount/detail?id=<?= $t['id'] ?>" class="tricount-card">
+            <h3><?= htmlspecialchars($t['title']) ?></h3>
+            <div class="card-meta">
+                <span>👥 Partagé en <?= $t['money'] ?></span>
+                <span>📅 <?= date('d/m/Y', strtotime($t['creation'])) ?></span>
+            </div>
+        </a>
+        
+        <a href="/?delete=<?= $t['id'] ?>" 
+           class="btn-delete" 
+           onclick="return confirm('Es-tu sûr de vouloir supprimer ce groupe ?')">
+           &times;
+        </a>
+    </div>
+<?php endforeach; ?>
         <?php endif; ?>
     </div>
 
