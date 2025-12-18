@@ -1,7 +1,6 @@
 <?php ob_start() ?>
 
 <div class="container">
-    <h1>TriCount</h1>
     <h2>Mes Groupes</h2>
     <p class="subtitle">Gérez vos dépenses partagées facilement</p>
     <div class="tricount-list">

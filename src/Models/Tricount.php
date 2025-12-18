@@ -78,4 +78,22 @@ public function getParticipants($groupId) {
     $query->execute(['groupId' => $groupId]);
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
+
+public function addExpense($groupId, $description, $amount, $category, $payerId) {
+    try {
+        $query = $this->db->prepare("
+            INSERT INTO depenses (tricount_id, amount, payer_id, description, category, type, date) 
+            VALUES (:groupId, :amount, :payerId, :description, :category, 'expense', NOW())
+        ");
+        return $query->execute([
+            'groupId'     => $groupId,
+            'amount'      => $amount,
+            'payerId'     => $payerId,
+            'description' => htmlspecialchars($description),
+            'category'    => $category
+        ]);
+    } catch (\Exception $e) {
+        return false;
+    }
+}
 }

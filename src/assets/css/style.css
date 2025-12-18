@@ -1,28 +1,51 @@
+/* --- Variables --- */
+:root {
+    --primary-color: #717171; /* Gris du header */
+    --accent-color: #2196F3;  /* Bleu pour les actions */
+    --bg-light: #f5f7f9;
+    --text-dark: #333;
+    --text-gray: #757575;
+    --white: #ffffff;
+    --green: #4CAF50;
+    --red: #f44336;
+}
 
 /* Style du header quand c'est un groupe */
 header.header-group {
-    background-color: #717171;
+    background-color: var(--primary-color);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 15px;
+    padding: 30px;
     color: white;
 }
 
 header.header-group h1 {
-    font-size: 1.1rem;
+    font-size: 2rem;
     margin: 0;
 }
 
 header.header-group .back-btn {
-    font-size: 1.5rem;
+    font-size: 2rem;
     color: white;
     text-decoration: none;
 }
 
+header.header-group .header-options {
+    font-size: 2rem;
+    cursor: pointer;
+}
+
 /* Style du header accueil */
 header.header-main {
-    padding: 15px;
+    background-color: var(--primary-color);
+    padding: 30px;
     display: flex;
     align-items: center;
+}
+
+header.header-main span {
+    color: white;
+    font-size: 2rem;
+    margin: 0;
 }

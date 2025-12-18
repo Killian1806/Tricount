@@ -69,7 +69,7 @@ ob_start();
 
 <div id="modal-add" class="modal">
     <div class="modal-content">
-        <form action="/add-expense" method="POST">
+        <form action="groupe?id=<?= $group['id'] ?>" method="POST">
             <h3>Nouvelle dépense</h3>
             <input type="text" name="description" placeholder="De quoi s'agit-il ?" required>
             <input type="number" step="0.01" name="amount" placeholder="0.00" required>
