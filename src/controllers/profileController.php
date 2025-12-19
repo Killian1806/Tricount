@@ -181,7 +181,6 @@ render('profile', false, [
     'title' => 'Mon Profil',
     'header_type' => 'profile', 
     'css' => 'profile',
-    'js' => 'theme',
     'error' => $error,           
     'userData' => $userData      
 ]);

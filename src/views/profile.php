@@ -244,7 +244,6 @@ render('default', true, [
     'header_type' => 'profile',
     'css' => 'profile',
     'content' => ob_get_clean(),
-    'js' => 'theme',
     'userData' => $userData ?? null
 ]);
 ?>

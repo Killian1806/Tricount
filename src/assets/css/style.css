@@ -58,10 +58,9 @@ header.header-main span {
 }
 
 
-/* Style spécifique pour le header du profil */
 /* Style pour le Header spécifique au Profil */
 header.header-profile {
-    background-color: #717171 !important; /* Gris de l'image */
+    background-color: #717171 !important; 
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -77,18 +76,42 @@ header.header-profile h1 {
     flex-grow: 1;
     text-align: center;
     color: white !important;
-    background: transparent !important; /* Sécurité contre les vieux styles */
+    background: transparent !important; 
 }
 
 header.header-profile .back-btn {
     color: white;
     text-decoration: none;
     font-size: 24px;
-    width: 40px; /* Largeur pour équilibrer avec le spacer */
+    width: 40px; 
     display: flex;
     align-items: center;
 }
 
 header.header-profile .header-spacer {
-    width: 40px; /* Même largeur que le bouton back pour que le titre reste au milieu */
+    width: 40px; 
+}
+
+
+/* DARK THEME - HEADER */
+body.dark-theme header.header-main,
+body.dark-theme header.header-group,
+body.dark-theme header.header-profile {
+    background-color: #1f1f1f;
+    border-bottom: 1px solid #333;
+}
+
+body.dark-theme header.header-main span,
+body.dark-theme header.header-group h1,
+body.dark-theme header.header-profile h1 {
+    color: #ffffff;
+}
+
+body.dark-theme header.header-group .back-btn,
+body.dark-theme header.header-profile .back-btn {
+    color: #ffffff;
+}
+
+body.dark-theme .profile-icon {
+    opacity: 0.9;
 }

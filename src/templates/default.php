@@ -37,6 +37,7 @@
 			<script src="assets/js/<?= $js ?>.js"></script>
 		<?php endif; ?>
 	</main>
+	<script src="../assets/js/theme.js"></script>
 </body>
 
 </html>

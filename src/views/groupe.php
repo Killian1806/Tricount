@@ -99,5 +99,6 @@ render('default', true, [
     'css' => 'groupe',
     'content' => ob_get_clean(),
     'js' => 'groupe',
+    
 ]);
 ?>
