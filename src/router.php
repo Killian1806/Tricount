@@ -18,3 +18,9 @@ if ($path == '/') {
 		require 'views/404.php';
 	}
 }
+
+// Au tout début de router.php
+if ($_SERVER['REQUEST_URI'] === '/test_simple.php') {
+    require 'test_simple.php';
+    exit;
+}

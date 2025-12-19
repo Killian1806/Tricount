@@ -96,4 +96,69 @@ public function addExpense($groupId, $description, $amount, $category, $payerId)
         return false;
     }
 }
+
+/**
+ * Ajoute un participant à un groupe
+ */
+public function addParticipant($tricountId, $name, $email = null) {
+    try {
+        // On force l'affichage des erreurs pour ce test
+        $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $query = $this->db->prepare("
+            INSERT INTO participants (tricount_id, user_id, alias_name, balance, email) 
+            VALUES (:tricountId, NULL, :alias_name, 0, :email)
+        ");
+        
+        return $query->execute([
+            'tricountId' => $tricountId,
+            'alias_name' => htmlspecialchars($name),
+            'email'      => $email
+        ]);
+
+    } catch (\PDOException $e) {
+        // SI CA ECHO ICI, VOUS VERREZ L'ERREUR SUR VOTRE PAGE GROUPE.PHP
+        echo "<div style='background:red; color:white; padding:20px; position:fixed; top:0; z-index:9999;'>";
+        echo "<h3>Erreur SQL détectée :</h3>";
+        echo $e->getMessage();
+        echo "</div>";
+        return false;
+    }
+}
+
+/**
+ * Supprime un participant d'un groupe
+ */
+public function removeParticipant($participantId, $tricountId) {
+    try {
+        // Vérifier que le participant n'a pas de dépenses
+        $checkQuery = $this->db->prepare("
+            SELECT COUNT(*) as count FROM depenses 
+            WHERE payer_id = :participantId AND tricount_id = :tricountId
+        ");
+        $checkQuery->execute([
+            'participantId' => $participantId,
+            'tricountId' => $tricountId
+        ]);
+        $result = $checkQuery->fetch(PDO::FETCH_ASSOC);
+        
+        if ($result['count'] > 0) {
+            // Le participant a des dépenses, on ne peut pas le supprimer
+            return false;
+        }
+        
+        // Supprimer le participant
+        $deleteQuery = $this->db->prepare("
+            DELETE FROM participants 
+            WHERE id = :participantId AND tricount_id = :tricountId
+        ");
+        return $deleteQuery->execute([
+            'participantId' => $participantId,
+            'tricountId' => $tricountId
+        ]);
+    } catch (\Exception $e) {
+        return false;
+    }
+}
+
 }
